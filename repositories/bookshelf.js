@@ -14,9 +14,7 @@ var Books = db.Model.extend({
 });
 
 function dbMethods() {
-
     
-
     this.selectAuthorBooksById = function(id, res) {
 
         Authors.where('id', id).fetch({withRelated: ['books']}).then(function(author) {
