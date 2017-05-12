@@ -3,10 +3,12 @@ var app = express();
 
 // Including routers:
 var index = require('./index');
-var bookshelf = require('./bookshelf');
+var author = require('./author');
+var book = require('./book');
 
 // Configuring routers passing the app as parameter:
 index.configure(app);
-bookshelf.configure(app);
+author.configure(app);
+book.configure(app);
 
 module.exports = app;
