@@ -6,22 +6,21 @@ function dbMethods() {
     
     this.selectAuthorBooksById = function(id, res) {
 
-        var result = Authors
-        .where('id', id)
-        .fetch({withRelated: ['books']})
-        .then(function(author) {
-            console.log(author.related('books').toJSON());
-            res.send("Author "+id+" has written: ..."+author.related('books').toJSON());
-        })
-        .catch(function(err) {
-            console.error(err);
-        });
-
-        //res.send("Author "+id+" has written: ..."+result);
-    }
+        Authors.where('id', id)
+               .fetch({withRelated: ['books']})
+               .then((author)=>{
+                    console.log(author);
+                    res.json(author);
+                })
+    },
 
     this.selectAuthorInfo = function(id, res) {
-        res.send("Author "+id+" info: ...");
+
+        Authors.where('id', id)
+               .fetch()
+               .then((author)=>{
+                    res.json(author);
+                })
     }
 }
 

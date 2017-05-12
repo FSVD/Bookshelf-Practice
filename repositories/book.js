@@ -5,7 +5,12 @@ var Books = require('../models/book');
 function dbMethods() {
 
     this.selectBookInfo = function(id, res) {
-        res.send("Book "+id+" info: ...");
+        Books.where('id', id)
+               .fetch()
+               .then((book)=>{
+                    console.log(book);
+                    res.json(book);
+                })
     }
 }
 
