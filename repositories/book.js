@@ -8,8 +8,10 @@ function dbMethods() {
         Books.where('id', id)
                .fetch()
                .then((book)=>{
-                    console.log(book);
-                    res.json(book);
+                    var bookString = JSON.stringify(book); // Convert query result to JSON string
+                    var bookObject = JSON.parse(bookString); // Convert JSON to object so we can access to object attributes
+                    console.log(bookObject.title); // Read object property
+                    res.json(book); // Send result as JSON string
                 })
     }
 }
