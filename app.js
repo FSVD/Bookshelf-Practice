@@ -7,14 +7,6 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-// Run db when application start
-var db  = require('./config/db');
-
-// set API access point file
-var accessPoints = require('./routes/access_points');
-app.use(accessPoints);
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -26,6 +18,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Run db when application start
+var db  = require('./config/db');
+
+// set API access point file
+var accessPoints = require('./routes/access_points');
+app.use(accessPoints);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -10,12 +10,12 @@ function dbMethods() {
                .fetch()
                .then((book)=>{
 
-                    var bookString = JSON.stringify(book); // Convert query result to JSON string
-                    var bookObject = JSON.parse(bookString); // Convert JSON to object so we can access to object attributes
-                    console.log(bookObject.title); // Read object attribute
+                    var resultString = JSON.stringify(book); // Convert query result to JSON string
+                    var resultObject = JSON.parse(resultString); // Convert JSON to object so we can access to object attributes
+                    console.log(resultObject.title); // Read object attribute
 
-                    var bookObject2 = JSON.parse(JSON.stringify(book)); // Previous two lines resumed in one line
-                    console.log(bookObject2.title);
+                    var resultObject2 = JSON.parse(JSON.stringify(book)); // Previous two lines resumed in one line
+                    console.log(resultObject2.title);
 
                     res.json(book); // Send result as JSON string
                 })
