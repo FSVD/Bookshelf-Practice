@@ -13,6 +13,9 @@ function dbMethods() {
                 console.log(resultObject.first_name + " " + resultObject.last_name);
                 res.json(result);
             })
+            .catch((err) => {
+                res.status(500).json({error: true, data: {message: err.message}});
+            });
     },
 
     this.insertAuthor = function (req, res) {
@@ -29,6 +32,9 @@ function dbMethods() {
                         result
                     })
                 })
+                .catch((err) => {
+                res.status(500).json({error: true, data: {message: err.message}});
+                });
         } else {
             res.status(400).send('Missing Parameters')
         }
@@ -54,24 +60,21 @@ function dbMethods() {
                         res.json(result);
                     })
             })
+            .catch((err) => {
+                res.status(500).json({error: true, data: {message: err.message}});
+            });
     },
 
     this.deleteAuthor = function (req, res) {
 
-        console.log(req);
-
         authorModel.forge({
                 id: req
             })
-            .fetch({
-                require: true
-            })
-            .then((result) => {
-                result.destroy()
-                    .then(() => {
-                        res.json("Successfully deleted Author")
-                    })
-            })
+            .destroy()
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json({error: true, data: {message: err.message}});
+            });
     },
 
     this.selectAuthorBooks = function (id, res) {
@@ -91,6 +94,9 @@ function dbMethods() {
 
                 res.json(result); // Send result as JSON string
             })
+            .catch((err) => {
+                res.status(500).json({error: true, data: {message: err.message}});
+            });
     }
 }
 

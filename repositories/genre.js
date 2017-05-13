@@ -14,6 +14,9 @@ function dbMethods() {
                 console.log(resultObject[0].name);
                 res.json(result); // Send an objects collection/array
             })
+            .catch((err) => {
+                res.status(500).json({error: true, data: {message: err.message}});
+            });
     }
 
     this.selectGenreBooks = function (id, res) {
@@ -30,6 +33,9 @@ function dbMethods() {
                 res.json(result); // Send result as JSON string
 
             })
+            .catch((err) => {
+                res.status(500).json({error: true, data: {message: err.message}});
+            });
     }
 }
 

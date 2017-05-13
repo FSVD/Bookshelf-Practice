@@ -8,6 +8,8 @@ var authorModel = db.Model.extend({
     return this.hasMany('bookModel');
   }
 
+}, {
+  dependents: ['books']
 });
 
 module.exports = db.model('authorModel', authorModel); // To avoid circular dependency we have to export using this bookshelf sintax
