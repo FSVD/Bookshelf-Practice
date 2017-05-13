@@ -1,24 +1,41 @@
-var Authors = require('../models/author');
-var Books = require('../models/book');
+var authorModel = require('../models/author');
+var bookModel = require('../models/book');
+var genreModel = require('../models/genre');
 
 
 function dbMethods() {
 
-    this.selectBookInfo = function(id, res) {
+    this.selectBook = function(id, res) {
         
-        Books.where('id', id)
+        bookModel.where('id', id)
                .fetch()
-               .then((book)=>{
+               .then((result)=>{
 
-                    var resultString = JSON.stringify(book); // Convert query result to JSON string
+                    var resultString = JSON.stringify(result); // Convert query result to JSON string
                     var resultObject = JSON.parse(resultString); // Convert JSON to object so we can access to object attributes
                     console.log(resultObject.title); // Read object attribute
 
-                    var resultObject2 = JSON.parse(JSON.stringify(book)); // Previous two lines resumed in one line
+                    var resultObject2 = JSON.parse(JSON.stringify(result)); // Previous two lines resumed in one line
                     console.log(resultObject2.title);
 
-                    res.json(book); // Send result as JSON string
+                    res.json(result); // Send result as JSON string
                 })
+    }
+
+    this.selectBookGenres = function (id, res) {
+
+        bookModel.where('id', id)
+            .fetch({
+                withRelated: ['genres']
+            })
+            .then((result) => {
+
+                var resultObject = JSON.parse(JSON.stringify(result)); // Previous two lines resumed in one line
+                console.log(resultObject);
+
+                res.json(result); // Send result as JSON string
+                
+            })
     }
 }
 

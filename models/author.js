@@ -1,13 +1,13 @@
 var db = require('../config/db');
-var Books = require('./book');
+require('./book'); // To avoid circular dependency we have to require model without assigning it to a variable
 
-var Authors = db.Model.extend({
+var authorModel = db.Model.extend({
   tableName: 'authors',
 
   books: function() {
-    return this.hasMany(Books);
+    return this.hasMany('bookModel');
   }
 
 });
 
-module.exports = Authors;
+module.exports = db.model('authorModel', authorModel); // To avoid circular dependency we have to export using this bookshelf sintax

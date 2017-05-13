@@ -1,10 +1,14 @@
-var dbBookQueries = require('../repositories/book');
+var bookController = require('../controllers/book');
 
 function http() {
     this.configure = function(app) {
 
         app.get('/book/:id/', function(req, res){
-            dbBookQueries.selectBookInfo(req.params.id, res);
+            bookController.selectBook(req.params.id, res);
+        })
+
+        app.get('/book/:id/genres/', function(req, res){
+            bookController.selectBookGenres(req.params.id, res);
         })
     }
 }

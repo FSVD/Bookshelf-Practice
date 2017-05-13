@@ -1,32 +1,32 @@
-var Authors = require('../models/author');
-var Books = require('../models/book');
+var authorModel = require('../models/author');
+var bookModel = require('../models/book');
 
 
 function dbMethods() {
 
     this.selectAuthor = function (id, res) {
 
-        Authors.where('id', id)
+        authorModel.where('id', id)
             .fetch()
-            .then((author) => {
-                var resultObject = JSON.parse(JSON.stringify(author));
+            .then((result) => {
+                var resultObject = JSON.parse(JSON.stringify(result));
                 console.log(resultObject.first_name + " " + resultObject.last_name);
-                res.json(author);
+                res.json(result);
             })
     },
 
     this.insertAuthor = function (req, res) {
 
         if (req.first_name) {
-            Authors.forge({
+            authorModel.forge({
                     first_name: req.first_name,
                     last_name: req.last_name || null,
                     nickname: req.nickname || null
                 })
                 .save()
-                .then((saved) => {
+                .then((result) => {
                     res.json({
-                        saved
+                        result
                     })
                 })
         } else {
@@ -36,22 +36,22 @@ function dbMethods() {
 
     this.updateAuthor = function (req, res) {
 
-        Authors
+        authorModel
             .where({
                 id: req.id
             })
             .fetch()
-            .then((author) => {
-                author.save({
-                        first_name: req.first_name || author.first_name,
-                        last_name: req.last_name || author.last_name,
+            .then((result) => {
+                result.save({
+                        first_name: req.first_name || result.first_name,
+                        last_name: req.last_name || result.last_name,
                         nickname: req.nickname || null
                     }, {
                         method: 'update',
                         patch: true
                     })
-                    .then((update) => {
-                        res.json(update);
+                    .then((result) => {
+                        res.json(result);
                     })
             })
     },
@@ -60,14 +60,14 @@ function dbMethods() {
 
         console.log(req);
 
-        Authors.forge({
+        authorModel.forge({
                 id: req
             })
             .fetch({
                 require: true
             })
-            .then((author) => {
-                author.destroy()
+            .then((result) => {
+                result.destroy()
                     .then(() => {
                         res.json("Successfully deleted Author")
                     })
@@ -76,20 +76,20 @@ function dbMethods() {
 
     this.selectAuthorBooks = function (id, res) {
 
-        Authors.where('id', id)
+        authorModel.where('id', id)
             .fetch({
                 withRelated: ['books']
             })
-            .then((author) => {
+            .then((result) => {
 
-                var resultString = JSON.stringify(author); // Convert query result to JSON string
+                var resultString = JSON.stringify(result); // Convert query result to JSON string
                 var resultObject = JSON.parse(resultString); // Convert JSON to object so we can access to object attributes
                 console.log(resultObject.books[0].title); // Read object attribute
 
-                var resultObject2 = JSON.parse(JSON.stringify(author)); // Previous two lines resumed in one line
+                var resultObject2 = JSON.parse(JSON.stringify(result)); // Previous two lines resumed in one line
                 console.log(resultObject2.books[0].title);
 
-                res.json(author); // Send result as JSON string
+                res.json(result); // Send result as JSON string
             })
     }
 }

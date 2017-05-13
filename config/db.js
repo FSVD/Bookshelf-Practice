@@ -4,4 +4,7 @@ var knex        = require('knex')(config[env]);
 
 knex.migrate.latest([config]); 
 
-module.exports = require('bookshelf')(knex); // Export module bookshelf for access to db connection
+var bookshelf = require('bookshelf')(knex);
+bookshelf.plugin('registry'); // Avoid circular dependency among models
+
+module.exports = bookshelf; // Export module bookshelf for access to db connection
