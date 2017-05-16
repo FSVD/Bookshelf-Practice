@@ -9,10 +9,10 @@ function dbMethods() {
         return authorModel.where('id', id)
                           .fetch()
                           .then((result) => {
-                                return result // Return result to service
+                                return result // Returns promise result to service
                           })
                           .catch((err) => {
-                                return err // Return error to service
+                                return err // Returns error to service
                           });
     }
 

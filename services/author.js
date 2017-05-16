@@ -4,20 +4,18 @@ function authorService() {
 
     this.selectAuthor = function (id, res) {
         return new Promise((resolve, reject) => {
-            resolve(authorRepository.selectAuthor(id, res));
+            resolve(authorRepository.selectAuthor(id, res)); // Calls repository to perform operations on DB
         }).then(result => {
 
-            var resultString = JSON.stringify(result); // Convert query result to JSON string
-            var resultObject = JSON.parse(resultString); // Convert JSON to object so we can access to object attributes
-            console.log("Result attribute: "+resultObject.first_name); // Read object attribute
-
-            var resultObject2 = JSON.parse(JSON.stringify(result)); // Previous two lines resumed in one line
-            console.log("Result attribute: "+resultObject2.first_name);
-
-            res.json(result);
+            // DATA PROCESSING
+            var resultObject = JSON.parse(JSON.stringify(result)); // Converts promise result to a parsed json string
+            var authorFullName = resultObject.first_name+" "+resultObject.last_name // Performs any process
+            return authorFullName // Returns processed data to controller
+            //res.json(result);
 
         }).catch(err => {
-            res.status(500).json({error: true, data: {message: err.message}});
+            return err // Returns error to controller
+            //res.status(500).json({error: true, data: {message: err.message}});
         })
     }
 
@@ -26,12 +24,12 @@ function authorService() {
             return new Promise((resolve, reject) => {
                 resolve(authorRepository.insertAuthor(req, res));
             }).then(result => {
-                res.json(result);
+                res.json(result); // Sends promise result to client 
             }).catch(err => {
-                res.status(500).json({error: true, data: {message: err.message}});
+                res.status(500).json({error: true, data: {message: err.message}}); // Sends error to client 
             })
         } else {
-            res.status(400).send('Missing Parameters');
+            res.status(400).send('Missing Parameters'); // Sends message to client 
         }
     }
 
