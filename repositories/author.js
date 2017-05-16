@@ -14,27 +14,23 @@ function dbMethods() {
                           .catch((err) => {
                                 return err // Return error to service
                           });
-    },
+    }
 
     this.insertAuthor = function (req, res) {
 
-        if (req.first_name) {
-            return authorModel.forge({
-                                    first_name: req.first_name,
-                                    last_name: req.last_name || null,
-                                    nickname: req.nickname || null
-                              })
-                              .save()
-                              .then((result) => {
-                                    return result
-                              })
-                              .catch((err) => {
-                                    return err
-                              });
-        } else {
-            res.status(400).send('Missing Parameters')
-        }
-    },
+        return authorModel.forge({
+                                first_name: req.first_name,
+                                last_name: req.last_name || null,
+                                nickname: req.nickname || null
+                          })
+                          .save()
+                          .then((result) => {
+                                return result
+                          })
+                          .catch((err) => {
+                                return err
+                          });
+    }
 
     this.updateAuthor = function (req, res) {
 
@@ -59,7 +55,7 @@ function dbMethods() {
                           .catch((err) => {
                                 return err
                           });
-    },
+    }
 
     this.deleteAuthor = function (req, res) {
 
@@ -70,7 +66,7 @@ function dbMethods() {
                           .catch((err) => {
                                 return err
                           });
-    },
+    }
 
     this.selectAuthorBooks = function (id, res) {
 

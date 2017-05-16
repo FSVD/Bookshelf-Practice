@@ -9,7 +9,7 @@ function dbMethods() {
         
         return bookModel.where('id', id)
                         .fetch()
-                        .then((result)=>{
+                        .then((result) => {
                             return result
                         })
                         .catch((err) => {
@@ -37,7 +37,7 @@ function dbMethods() {
         } else {
             res.status(400).send('Missing Parameters')
         }
-    },
+    }
 
     this.selectBookGenres = function (id, res) {
 

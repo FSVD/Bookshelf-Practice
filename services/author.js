@@ -22,13 +22,17 @@ function authorService() {
     }
 
     this.insertAuthor = function (req, res) {
-        return new Promise((resolve, reject) => {
-            resolve(authorRepository.insertAuthor(req, res));
-        }).then(result => {
-            res.json(result);
-        }).catch(err => {
-            res.status(500).json({error: true, data: {message: err.message}});
-        })
+        if (req.first_name) {
+            return new Promise((resolve, reject) => {
+                resolve(authorRepository.insertAuthor(req, res));
+            }).then(result => {
+                res.json(result);
+            }).catch(err => {
+                res.status(500).json({error: true, data: {message: err.message}});
+            })
+        } else {
+            res.status(400).send('Missing Parameters');
+        }
     }
 
     this.updateAuthor = function (req, res) {
@@ -55,7 +59,12 @@ function authorService() {
         return new Promise((resolve, reject) => {
             resolve(authorRepository.selectAuthorBooks(id, res));
         }).then(result => {
-            res.json(result);
+            var resultObject = JSON.parse(JSON.stringify(result));
+            if (resultObject.books[0] != null) {
+                res.json(result);
+            } else {
+                res.status(400).send("This author has no books!");
+            }
         }).catch(err => {
             res.status(500).json({error: true, data: {message: err.message}});
         })
