@@ -7,31 +7,27 @@ function dbMethods() {
 
     this.selectAllGenres = function (req, res) {
 
-        genreModel.fetchAll()
-                  .then((result) => {
-                        var resultObject = JSON.parse(JSON.stringify(result));
-                        console.log(resultObject[0].name);
-                        res.json(result); // Send an objects collection/array
-                  })
-                  .catch((err) => {
-                        res.status(500).json({error: true, data: {message: err.message}});
-                  });
+        return genreModel.fetchAll()
+                         .then((result) => {
+                               return result
+                         })
+                         .catch((err) => {
+                               return err
+                         });
     }
 
     this.selectGenreBooks = function (id, res) {
 
-        genreModel.where('id', id)
-                  .fetch({
-                        withRelated: ['books']
-                  })
-                  .then((result) => {
-                        var resultObject = JSON.parse(JSON.stringify(result));
-                        console.log(resultObject.books[0].title);
-                        res.json(result);
-                  })
-                  .catch((err) => {
-                        res.status(500).json({error: true, data: {message: err.message}});
-                  });
+        return genreModel.where('id', id)
+                         .fetch({
+                               withRelated: ['books']
+                         })
+                         .then((result) => {
+                               return result
+                         })
+                         .catch((err) => {
+                               return err
+                         });
     }
 }
 

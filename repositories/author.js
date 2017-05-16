@@ -6,35 +6,31 @@ function dbMethods() {
 
     this.selectAuthor = function (id, res) {
 
-        authorModel.where('id', id)
-                   .fetch()
-                   .then((result) => {
-                        var resultObject = JSON.parse(JSON.stringify(result));
-                        console.log(resultObject.first_name + " " + resultObject.last_name);
-                        res.json(result);
-                   })
-                   .catch((err) => {
-                        res.status(500).json({error: true, data: {message: err.message}});
-                   });
+        return authorModel.where('id', id)
+                          .fetch()
+                          .then((result) => {
+                                return result // Return result to service
+                          })
+                          .catch((err) => {
+                                return err // Return error to service
+                          });
     },
 
     this.insertAuthor = function (req, res) {
 
         if (req.first_name) {
-            authorModel.forge({
-                            first_name: req.first_name,
-                            last_name: req.last_name || null,
-                            nickname: req.nickname || null
-                       })
-                       .save()
-                       .then((result) => {
-                            res.json({
-                                result
-                            })
-                       })
-                       .catch((err) => {
-                            res.status(500).json({error: true, data: {message: err.message}});
-                       });
+            return authorModel.forge({
+                                    first_name: req.first_name,
+                                    last_name: req.last_name || null,
+                                    nickname: req.nickname || null
+                              })
+                              .save()
+                              .then((result) => {
+                                    return result
+                              })
+                              .catch((err) => {
+                                    return err
+                              });
         } else {
             res.status(400).send('Missing Parameters')
         }
@@ -42,54 +38,52 @@ function dbMethods() {
 
     this.updateAuthor = function (req, res) {
 
-        authorModel.where({
-                        id: req.id
-                   })
-                   .fetch()
-                   .then((result) => {
-                        result.save({
-                                    first_name: req.first_name || result.first_name,
-                                    last_name: req.last_name || result.last_name,
-                                    nickname: req.nickname || null
-                              }, {
-                                    method: 'update',
-                                    patch: true
-                              })
-                              .then((result) => {
-                                    res.json(result);
-                              })
-                    })
-                    .catch((err) => {
-                        res.status(500).json({error: true, data: {message: err.message}});
-                    });
+        return authorModel.where({
+                                id: req.id
+                          })
+                          .fetch()
+                          .then((result) => {
+                                return result.save({
+                                                first_name: req.first_name || result.first_name,
+                                                last_name: req.last_name || result.last_name,
+                                                nickname: req.nickname || null
+                                             },
+                                             {
+                                                method: 'update',
+                                                patch: true
+                                             })
+                                             .then((result) => {
+                                                return result
+                                             })
+                          })
+                          .catch((err) => {
+                                return err
+                          });
     },
 
     this.deleteAuthor = function (req, res) {
 
-        authorModel.forge({
-                        id: req
-                   })
-                   .destroy()
-                   .catch((err) => {
-                        console.log(err);
-                        res.status(500).json({error: true, data: {message: err.message}});
-                   });
+        return authorModel.forge({
+                                id: req
+                          })
+                          .destroy()
+                          .catch((err) => {
+                                return err
+                          });
     },
 
     this.selectAuthorBooks = function (id, res) {
 
-        authorModel.where('id', id)
-                   .fetch({
-                        withRelated: ['books']
-                   })
-                   .then((result) => {
-                        var resultObject = JSON.parse(JSON.stringify(result));
-                        console.log(resultObject.books[0].title);
-                        res.json(result);
-                   })
-                   .catch((err) => {
-                        res.status(500).json({error: true, data: {message: err.message}});
-                   });
+        return authorModel.where('id', id)
+                          .fetch({
+                                withRelated: ['books']
+                          })
+                          .then((result) => {
+                                return result
+                          })
+                          .catch((err) => {
+                                return err
+                          });
     }
 }
 
