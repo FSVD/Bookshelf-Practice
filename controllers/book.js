@@ -6,6 +6,10 @@ function bookController() {
         bookService.selectBook(id, res);
     }
 
+    this.insertBook = function (req, res) {
+        bookService.insertBook(req, res);
+    }
+
     this.selectBookGenres = function (id, res) {
         bookService.selectBookGenres(id, res);
     }

@@ -17,6 +17,28 @@ function dbMethods() {
                         });
     }
 
+    this.insertBook = function (req, res) {
+
+        if (req.title) {
+            return bookModel.forge({
+                                author_id: req.author_id,
+                                title: req.title,
+                                year: req.year || null,
+                                isbn: req.isbn || null
+                            })
+                            .save()
+                            .then((result) => {
+                                // Get book id created and set a new relation in "books_genres" table between book_id and genre_id (req.genre_id)
+                                return result
+                            })
+                            .catch((err) => {
+                                    return err
+                            });
+        } else {
+            res.status(400).send('Missing Parameters')
+        }
+    },
+
     this.selectBookGenres = function (id, res) {
 
         return bookModel.where('id', id)

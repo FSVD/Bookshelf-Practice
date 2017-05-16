@@ -7,6 +7,10 @@ function http() {
             bookController.selectBook(req.params.id, res);
         })
 
+        app.post('/book/', function(req, res){
+            bookController.insertBook(req.body, res);
+        })
+
         app.get('/book/:id/genres/', function(req, res){
             bookController.selectBookGenres(req.params.id, res);
         })
