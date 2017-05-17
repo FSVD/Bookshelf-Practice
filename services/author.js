@@ -14,8 +14,7 @@ function authorService() {
             //res.json(result);
 
         }).catch(err => {
-            return err // Returns error to controller
-            //res.status(500).json({error: true, data: {message: err.message}});
+            res.status(500).json({error: true, origin: {module: 'authorService', function: 'selectAuthor'}, data: {message: err.message}});
         })
     }
 
@@ -26,10 +25,10 @@ function authorService() {
             }).then(result => {
                 res.json(result); // Sends promise result to client 
             }).catch(err => {
-                res.status(500).json({error: true, data: {message: err.message}}); // Sends error to client 
+                res.status(500).json({error: true, origin: {module: 'authorService', function: 'insertAuthor'}, data: {message: err.message}});
             })
         } else {
-            res.status(400).send('Missing Parameters'); // Sends message to client 
+            res.status(400).json({error: true, origin: {module: 'authorService', function: 'insertAuthor'}, data: {message: 'Missing parameters'}});
         }
     }
 
@@ -39,17 +38,17 @@ function authorService() {
         }).then(result => {
             res.json(result);
         }).catch(err => {
-            res.status(500).json({error: true, data: {message: err.message}});
+            res.status(500).json({error: true, origin: {module: 'authorService', function: 'updateAuthor'}, data: {message: err.message}});
         })
     }
 
     this.deleteAuthor = function (id, res) {
         return new Promise((resolve, reject) => {
             resolve(authorRepository.deleteAuthor(id, res));
-        }).then(() => {
-            res.send("Author deleted!");
+        }).then((result) => {
+            if (result != undefined) res.send("Author deleted!");
         }).catch(err => {
-            res.status(500).json({error: true, data: {message: err.message}});
+            res.status(500).json({error: true, origin: {module: 'authorService', function: 'deleteAuthor'}, data: {message: err.message}});
         })
     }
 
@@ -61,12 +60,12 @@ function authorService() {
             if (resultObject.books[0] != null) {
                 res.json(result);
             } else {
-                res.status(400).send("This author has no books!");
+                res.status(400).json({error: true, origin: {module: 'authorService', function: 'selectAuthorBooks'}, data: {message: 'This author has no books!'}});
             }
         }).catch(err => {
-            res.status(500).json({error: true, data: {message: err.message}});
+            res.status(500).json({error: true, origin: {module: 'authorService', function: 'selectAuthorBooks'}, data: {message: err.message}});
         })
-    }    
+    }
 }
 
 module.exports = new authorService();

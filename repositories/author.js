@@ -8,11 +8,9 @@ function dbMethods() {
 
         return authorModel.where('id', id)
                           .fetch()
-                          .then((result) => {
-                                return result // Returns promise result to service
-                          })
+                          .then()
                           .catch((err) => {
-                                return err // Returns error to service
+                                res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'selectAuthor'}, data: {message: err.message}});
                           });
     }
 
@@ -24,11 +22,9 @@ function dbMethods() {
                                 nickname: req.nickname || null
                           })
                           .save()
-                          .then((result) => {
-                                return result
-                          })
+                          .then()
                           .catch((err) => {
-                                return err
+                                res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'insertAuthor'}, data: {message: err.message}});
                           });
     }
 
@@ -48,12 +44,10 @@ function dbMethods() {
                                                 method: 'update',
                                                 patch: true
                                              })
-                                             .then((result) => {
-                                                return result
-                                             })
+                                             .then()
                           })
                           .catch((err) => {
-                                return err
+                                res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'updateAuthor'}, data: {message: err.message}});
                           });
     }
 
@@ -64,7 +58,7 @@ function dbMethods() {
                           })
                           .destroy()
                           .catch((err) => {
-                                return err
+								res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'deleteAuthor'}, data: {message: err.message}});
                           });
     }
 
@@ -74,11 +68,9 @@ function dbMethods() {
                           .fetch({
                                 withRelated: ['books']
                           })
-                          .then((result) => {
-                                return result
-                          })
+                          .then()
                           .catch((err) => {
-                                return err
+                                res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'selectAuthorBooks'}, data: {message: err.message}});
                           });
     }
 }

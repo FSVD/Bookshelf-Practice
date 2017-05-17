@@ -10,6 +10,10 @@ function bookController() {
         bookService.insertBook(req, res);
     }
 
+    this.deleteBook = function (id, res) {
+        bookService.deleteBook(id, res);    
+    }
+
     this.selectBookGenres = function (id, res) {
         bookService.selectBookGenres(id, res);
     }

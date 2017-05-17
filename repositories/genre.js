@@ -8,11 +8,9 @@ function dbMethods() {
     this.selectAllGenres = function (req, res) {
 
         return genreModel.fetchAll()
-                         .then((result) => {
-                               return result
-                         })
+                         .then()
                          .catch((err) => {
-                               return err
+                               res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'selectAllGenres'}, data: {message: err.message}});
                          });
     }
 
@@ -22,11 +20,9 @@ function dbMethods() {
                          .fetch({
                                withRelated: ['books']
                          })
-                         .then((result) => {
-                               return result
-                         })
+                         .then()
                          .catch((err) => {
-                               return err
+                               res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'selectGenreBooks'}, data: {message: err.message}});
                          });
     }
 }

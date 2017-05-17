@@ -11,6 +11,10 @@ function http() {
             bookController.insertBook(req.body, res);
         })
 
+        app.delete('/book/:id/', function(req, res){
+            bookController.deleteBook(req.params.id, res);
+        })
+
         app.get('/book/:id/genres/', function(req, res){
             bookController.selectBookGenres(req.params.id, res);
         })
