@@ -9,7 +9,7 @@ function authorController() {
         }).then((result) => {
             res.json(result); // Sends promise result to client 
         }).catch(err => {
-            res.status(500).json({error: true, origin: {module: 'authorController', function: 'selectAuthor'}, data: {message: err.message}});
+            res.status(500).json({error: true, number: err.errno, origin: {module: 'authorController', function: 'selectAuthor'}, data: {message: err.message}});
         })
     }
 

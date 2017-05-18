@@ -8,7 +8,7 @@ function bookService() {
         }).then(result => {
             res.json(result);
         }).catch(err => {
-            res.status(500).json({error: true, origin: {module: 'bookService', function: 'selectBook'}, data: {message: err.message}});
+            res.status(500).json({error: true, number: err.errno, origin: {module: 'bookService', function: 'selectBook'}, data: {message: err.message}});
         })
     }
 
@@ -19,10 +19,10 @@ function bookService() {
             }).then(result => {
                 res.json(result);
             }).catch(err => {
-                res.status(500).json({error: true, origin: {module: 'bookService', function: 'insertBook'}, data: {message: err.message}});
+                res.status(500).json({error: true, number: err.errno, origin: {module: 'bookService', function: 'insertBook'}, data: {message: err.message}});
             })
          } else {
-             res.status(400).json({error: true, origin: {module: 'bookService', function: 'insertBook'}, data: {message: 'Missing parameters'}});
+             res.status(400).json({error: true, number: err.errno, origin: {module: 'bookService', function: 'insertBook'}, data: {message: 'Missing parameters'}});
          }
     }
 
@@ -32,7 +32,7 @@ function bookService() {
         }).then((result) => {
             if (result != undefined) res.send("Book deleted!");
         }).catch(err => {
-            res.status(500).json({error: true, origin: {module: 'bookService', function: 'deleteBook'}, data: {message: err.message}});
+            res.status(500).json({error: true, number: err.errno, origin: {module: 'bookService', function: 'deleteBook'}, data: {message: err.message}});
         })
     }
 
@@ -42,7 +42,7 @@ function bookService() {
         }).then(result => {
             res.json(result);
         }).catch(err => {
-            res.status(500).json({error: true, origin: {module: 'bookService', function: 'selectBookGenres'}, data: {message: err.message}});
+            res.status(500).json({error: true, number: err.errno, origin: {module: 'bookService', function: 'selectBookGenres'}, data: {message: err.message}});
         })
     }
 

@@ -8,7 +8,7 @@ function genreService() {
         }).then(result => {
             res.json(result); // Sends an objects collection/array
         }).catch(err => {
-            res.status(500).json({error: true, origin: {module: 'genreService', function: 'selectAllGenres'}, data: {message: err.message}});
+            res.status(500).json({error: true, number: err.errno, origin: {module: 'genreService', function: 'selectAllGenres'}, data: {message: err.message}});
         })
     }
 
@@ -18,7 +18,7 @@ function genreService() {
         }).then(result => {
             res.json(result);
         }).catch(err => {
-            res.status(500).json({error: true, origin: {module: 'genreService', function: 'selectGenreBooks'}, data: {message: err.message}});
+            res.status(500).json({error: true, number: err.errno, origin: {module: 'genreService', function: 'selectGenreBooks'}, data: {message: err.message}});
         })
     }
 

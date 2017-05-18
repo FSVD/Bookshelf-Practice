@@ -11,7 +11,7 @@ function dbMethods() {
                         .fetch()
                         .then()
                         .catch((err) => {
-                            res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'selectBook'}, data: {message: err.message}});
+                            res.status(500).json({error: true, number: err.errno, origin: {module: 'dbMethods', function: 'selectBook'}, data: {message: err.message}});
                         });
     }
 
@@ -26,7 +26,7 @@ function dbMethods() {
                         .save()
                         .then() // <= Get book id created and set a new relation in "books_genres" table between book_id and genre_id (req.genre_id)
                         .catch((err) => {
-                            res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'insertBook'}, data: {message: err.message}});
+                            res.status(500).json({error: true, number: err.errno, origin: {module: 'dbMethods', function: 'insertBook'}, data: {message: err.message}});
                         });
     }
 
@@ -37,7 +37,7 @@ function dbMethods() {
                         })
                         .destroy()  // <= Delete relation in "books_genres" table between book_id and genre_id (req.genre_id)
                         .catch((err) => {
-                            res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'deleteBook'}, data: {message: err.message}});
+                            res.status(500).json({error: true, number: err.errno, origin: {module: 'dbMethods', function: 'deleteBook'}, data: {message: err.message}});
                         });
     }
 
@@ -49,7 +49,7 @@ function dbMethods() {
                         })
                         .then()
                         .catch((err) => {
-                            res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'selectBookGenres'}, data: {message: err.message}});
+                            res.status(500).json({error: true, number: err.errno, origin: {module: 'dbMethods', function: 'selectBookGenres'}, data: {message: err.message}});
                         });
     }
 }

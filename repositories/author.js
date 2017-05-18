@@ -10,7 +10,7 @@ function dbMethods() {
                           .fetch()
                           .then()
                           .catch((err) => {
-                                res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'selectAuthor'}, data: {message: err.message}});
+                                res.status(500).json({error: true, number: err.errno, origin: {module: 'dbMethods', function: 'selectAuthor'}, data: {message: err.message}});
                           });
     }
 
@@ -24,7 +24,7 @@ function dbMethods() {
                           .save()
                           .then()
                           .catch((err) => {
-                                res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'insertAuthor'}, data: {message: err.message}});
+                                res.status(500).json({error: true, number: err.errno, origin: {module: 'dbMethods', function: 'insertAuthor'}, data: {message: err.message}});
                           });
     }
 
@@ -47,7 +47,7 @@ function dbMethods() {
                                              .then()
                           })
                           .catch((err) => {
-                                res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'updateAuthor'}, data: {message: err.message}});
+                                res.status(500).json({error: true, number: err.errno, origin: {module: 'dbMethods', function: 'updateAuthor'}, data: {message: err.message}});
                           });
     }
 
@@ -58,7 +58,7 @@ function dbMethods() {
                           })
                           .destroy()
                           .catch((err) => {
-								res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'deleteAuthor'}, data: {message: err.message}});
+				        res.status(500).json({error: true, number: err.errno, origin: {module: 'dbMethods', function: 'deleteAuthor'}, data: {message: err.message}});
                           });
     }
 
@@ -70,7 +70,7 @@ function dbMethods() {
                           })
                           .then()
                           .catch((err) => {
-                                res.status(500).json({error: true, origin: {module: 'dbMethods', function: 'selectAuthorBooks'}, data: {message: err.message}});
+                                res.status(500).json({error: true, number: err.errno, origin: {module: 'dbMethods', function: 'selectAuthorBooks'}, data: {message: err.message}});
                           });
     }
 }

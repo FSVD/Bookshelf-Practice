@@ -14,7 +14,7 @@ function authorService() {
             //res.json(result);
 
         }).catch(err => {
-            res.status(500).json({error: true, origin: {module: 'authorService', function: 'selectAuthor'}, data: {message: err.message}});
+            res.status(500).json({error: true, number: err.errno, origin: {module: 'authorService', function: 'selectAuthor'}, data: {message: err.message}});
         })
     }
 
@@ -25,10 +25,10 @@ function authorService() {
             }).then(result => {
                 res.json(result); // Sends promise result to client 
             }).catch(err => {
-                res.status(500).json({error: true, origin: {module: 'authorService', function: 'insertAuthor'}, data: {message: err.message}});
+                res.status(500).json({error: true, number: err.errno, origin: {module: 'authorService', function: 'insertAuthor'}, data: {message: err.message}});
             })
         } else {
-            res.status(400).json({error: true, origin: {module: 'authorService', function: 'insertAuthor'}, data: {message: 'Missing parameters'}});
+            res.status(400).json({error: true, number: err.errno, origin: {module: 'authorService', function: 'insertAuthor'}, data: {message: 'Missing parameters'}});
         }
     }
 
@@ -38,7 +38,7 @@ function authorService() {
         }).then(result => {
             res.json(result);
         }).catch(err => {
-            res.status(500).json({error: true, origin: {module: 'authorService', function: 'updateAuthor'}, data: {message: err.message}});
+            res.status(500).json({error: true, number: err.errno, origin: {module: 'authorService', function: 'updateAuthor'}, data: {message: err.message}});
         })
     }
 
@@ -48,7 +48,7 @@ function authorService() {
         }).then((result) => {
             if (result != undefined) res.send("Author deleted!");
         }).catch(err => {
-            res.status(500).json({error: true, origin: {module: 'authorService', function: 'deleteAuthor'}, data: {message: err.message}});
+            res.status(500).json({error: true, number: err.errno, origin: {module: 'authorService', function: 'deleteAuthor'}, data: {message: err.message}});
         })
     }
 
@@ -60,10 +60,10 @@ function authorService() {
             if (resultObject.books[0] != null) {
                 res.json(result);
             } else {
-                res.status(400).json({error: true, origin: {module: 'authorService', function: 'selectAuthorBooks'}, data: {message: 'This author has no books!'}});
+                res.status(400).json({error: true, number: err.errno, origin: {module: 'authorService', function: 'selectAuthorBooks'}, data: {message: 'This author has no books!'}});
             }
         }).catch(err => {
-            res.status(500).json({error: true, origin: {module: 'authorService', function: 'selectAuthorBooks'}, data: {message: err.message}});
+            res.status(500).json({error: true, number: err.errno, origin: {module: 'authorService', function: 'selectAuthorBooks'}, data: {message: err.message}});
         })
     }
 }
