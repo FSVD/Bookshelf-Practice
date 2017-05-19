@@ -6,7 +6,7 @@ function genreService() {
         return new Promise((resolve, reject) => {
             resolve(genreRepository.selectAllGenres(req, res));
         }).then(result => {
-            res.json(result); // Sends an objects collection/array
+            return result
         }).catch(err => {
             res.status(500).json({error: true, number: err.errno, origin: {module: 'genreService', function: 'selectAllGenres'}, data: {message: err.message}});
         })
@@ -16,7 +16,7 @@ function genreService() {
         return new Promise((resolve, reject) => {
             resolve(genreRepository.selectGenreBooks(id, res));
         }).then(result => {
-            res.json(result);
+            return result
         }).catch(err => {
             res.status(500).json({error: true, number: err.errno, origin: {module: 'genreService', function: 'selectGenreBooks'}, data: {message: err.message}});
         })

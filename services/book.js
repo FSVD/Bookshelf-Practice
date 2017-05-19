@@ -6,7 +6,7 @@ function bookService() {
         return new Promise((resolve, reject) => {
             resolve(bookRepository.selectBook(id, res));
         }).then(result => {
-            res.json(result);
+            return result
         }).catch(err => {
             res.status(500).json({error: true, number: err.errno, origin: {module: 'bookService', function: 'selectBook'}, data: {message: err.message}});
         })
@@ -17,20 +17,20 @@ function bookService() {
             return new Promise((resolve, reject) => {
                 resolve(bookRepository.insertBook(req, res));
             }).then(result => {
-                res.json(result);
+                return result
             }).catch(err => {
                 res.status(500).json({error: true, number: err.errno, origin: {module: 'bookService', function: 'insertBook'}, data: {message: err.message}});
             })
          } else {
-             res.status(400).json({error: true, number: err.errno, origin: {module: 'bookService', function: 'insertBook'}, data: {message: 'Missing parameters'}});
+             return 'Missing parameters';
          }
     }
 
     this.deleteBook = function (id, res) {
         return new Promise((resolve, reject) => {
             resolve(bookRepository.deleteBook(id, res));
-        }).then((result) => {
-            if (result != undefined) res.send("Book deleted!");
+        }).then(result => {
+            if (result != undefined) return "Book deleted!"
         }).catch(err => {
             res.status(500).json({error: true, number: err.errno, origin: {module: 'bookService', function: 'deleteBook'}, data: {message: err.message}});
         })
@@ -40,7 +40,12 @@ function bookService() {
         return new Promise((resolve, reject) => {
             resolve(bookRepository.selectBookGenres(id, res));
         }).then(result => {
-            res.json(result);
+            var resultObject = JSON.parse(JSON.stringify(result));
+            if (resultObject.genres[0] != null) {
+                return result
+            } else {
+                return 'This book has no genres!';
+            }
         }).catch(err => {
             res.status(500).json({error: true, number: err.errno, origin: {module: 'bookService', function: 'selectBookGenres'}, data: {message: err.message}});
         })

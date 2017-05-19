@@ -1,7 +1,4 @@
-var authorModel = require('../models/author');
 var bookModel = require('../models/book');
-var genreModel = require('../models/genre');
-
 
 function dbMethods() {
 
@@ -10,7 +7,7 @@ function dbMethods() {
         return bookModel.where('id', id)
                         .fetch()
                         .then()
-                        .catch((err) => {
+                        .catch(err => {
                             res.status(500).json({error: true, number: err.errno, origin: {module: 'dbMethods', function: 'selectBook'}, data: {message: err.message}});
                         });
     }
@@ -25,7 +22,7 @@ function dbMethods() {
                         })
                         .save()
                         .then() // <= Get book id created and set a new relation in "books_genres" table between book_id and genre_id (req.genre_id)
-                        .catch((err) => {
+                        .catch(err => {
                             res.status(500).json({error: true, number: err.errno, origin: {module: 'dbMethods', function: 'insertBook'}, data: {message: err.message}});
                         });
     }
@@ -36,7 +33,7 @@ function dbMethods() {
                                 id: req
                         })
                         .destroy()  // <= Delete relation in "books_genres" table between book_id and genre_id (req.genre_id)
-                        .catch((err) => {
+                        .catch(err => {
                             res.status(500).json({error: true, number: err.errno, origin: {module: 'dbMethods', function: 'deleteBook'}, data: {message: err.message}});
                         });
     }
@@ -48,7 +45,7 @@ function dbMethods() {
                             withRelated: ['genres']
                         })
                         .then()
-                        .catch((err) => {
+                        .catch(err => {
                             res.status(500).json({error: true, number: err.errno, origin: {module: 'dbMethods', function: 'selectBookGenres'}, data: {message: err.message}});
                         });
     }

@@ -1,7 +1,4 @@
-var authorModel = require('../models/author');
-var bookModel = require('../models/book');
 var genreModel = require('../models/genre');
-
 
 function dbMethods() {
 
@@ -9,7 +6,7 @@ function dbMethods() {
 
         return genreModel.fetchAll()
                          .then()
-                         .catch((err) => {
+                         .catch(err => {
                                res.status(500).json({error: true, number: err.errno, origin: {module: 'dbMethods', function: 'selectAllGenres'}, data: {message: err.message}});
                          });
     }
@@ -21,7 +18,7 @@ function dbMethods() {
                                withRelated: ['books']
                          })
                          .then()
-                         .catch((err) => {
+                         .catch(err => {
                                res.status(500).json({error: true, number: err.errno, origin: {module: 'dbMethods', function: 'selectGenreBooks'}, data: {message: err.message}});
                          });
     }
