@@ -7,8 +7,6 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-process.env['NODE_PATH']="./lib";
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
