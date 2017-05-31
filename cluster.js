@@ -12,10 +12,12 @@ if (cluster.isMaster) {
 
   cluster.on('exit', (worker, code, signal) => {
     console.log(`worker ${worker.process.pid} died`);
+    cluster.fork();
   });
 } else {
   // Workers can share any TCP connection
   // In this case it is an HTTP server
+
   // Application access point.
   require("./bin/www");
 
