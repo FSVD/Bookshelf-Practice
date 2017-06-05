@@ -1,5 +1,7 @@
 // Update with your config settings.
 
+"use strict";
+
 module.exports = {
 
 	development: {
@@ -14,6 +16,7 @@ module.exports = {
 			max: 10
 		},
 		migrations: {
+			directory: __dirname + '/migrations',
 			tableName: 'knex_migrations'
 		}
 	},
@@ -21,7 +24,7 @@ module.exports = {
 	staging: {
 		client: 'mysql',
 		connection: {
-			database: 'bookshelf-practice',
+			database: 'bookshelf-practice-staging',
 			user: 'dev',
 			password: 'dev'
 		},
@@ -30,6 +33,7 @@ module.exports = {
 			max: 10
 		},
 		migrations: {
+			directory: __dirname + '/migrations',
 			tableName: 'knex_migrations'
 		}
 	},
@@ -37,7 +41,7 @@ module.exports = {
 	production: {
 		client: 'mysql',
 		connection: {
-			database: 'bookshelf-practice',
+			database: 'bookshelf-practice-production',
 			user: 'dev',
 			password: 'dev'
 		},
@@ -46,6 +50,7 @@ module.exports = {
 			max: 10
 		},
 		migrations: {
+			directory: __dirname + '/migrations',
 			tableName: 'knex_migrations'
 		}
 	}

@@ -1,3 +1,5 @@
+"use strict";
+
 const cluster = require('cluster');
 const http = require('http');
 const numCPUs = require('os').cpus().length;
@@ -19,7 +21,7 @@ if (cluster.isMaster) {
   // In this case it is an HTTP server
 
   // Application access point.
-  require("./bin/www");
+  require('./bin/www');
 
   console.log(`Worker ${process.pid} started`);
 }
