@@ -12,9 +12,11 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "hbs": "^4.0.1",
     "jade": "~1.11.0",
     "knex": "^0.13.0",
     "morgan": "~1.8.1",
+    "multi-views": "^0.1.1",
     "mysql": "^2.13.0",
     "serve-favicon": "~2.4.2"
   }

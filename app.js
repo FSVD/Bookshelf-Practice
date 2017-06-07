@@ -18,8 +18,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // view engine setup
+/*app.set('views', path.join(__dirname, 'lib/_commons/views'));
+app.set('view engine', 'jade');*/
+
 app.set('views', path.join(__dirname, 'lib/_commons/views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'hbs');
 
 // run db when application start
 var db = require('./config/db');
