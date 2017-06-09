@@ -2,14 +2,16 @@
 
 "use strict";
 
+require('dotenv').config();
+
 module.exports = {
 
 	development: {
 		client: 'mysql',
 		connection: {
 			database: 'bookshelf-practice',
-			user: 'dev',
-			password: 'dev'
+			user: process.env.DEVELOPMENT_DB_USER,
+			password: process.env.DEVELOPMENT_DB_PASSWORD
 		},
 		pool: {
 			min: 2,
@@ -25,8 +27,8 @@ module.exports = {
 		client: 'mysql',
 		connection: {
 			database: 'bookshelf-practice-staging',
-			user: 'dev',
-			password: 'dev'
+			user: process.env.STAGING_DB_USER,
+			password: process.env.STAGING_DB_PASSWORD
 		},
 		pool: {
 			min: 2,
@@ -42,8 +44,8 @@ module.exports = {
 		client: 'mysql',
 		connection: {
 			database: 'bookshelf-practice-production',
-			user: 'dev',
-			password: 'dev'
+			user: process.env.PRODUCTION_DB_USER,
+			password: process.env.PRODUCTION_DB_PASSWORD
 		},
 		pool: {
 			min: 2,
