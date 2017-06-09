@@ -9,7 +9,7 @@ module.exports = {
 	development: {
 		client: 'mysql',
 		connection: {
-			database: 'bookshelf-practice',
+			database: process.env.DEVELOPMENT_DB_NAME,
 			user: process.env.DEVELOPMENT_DB_USER,
 			password: process.env.DEVELOPMENT_DB_PASSWORD
 		},
@@ -26,7 +26,7 @@ module.exports = {
 	staging: {
 		client: 'mysql',
 		connection: {
-			database: 'bookshelf-practice-staging',
+			database: process.env.STAGING_DB_NAME,
 			user: process.env.STAGING_DB_USER,
 			password: process.env.STAGING_DB_PASSWORD
 		},
@@ -43,7 +43,7 @@ module.exports = {
 	production: {
 		client: 'mysql',
 		connection: {
-			database: 'bookshelf-practice-production',
+			database:  process.env.PRODUCTION_DB_NAME,
 			user: process.env.PRODUCTION_DB_USER,
 			password: process.env.PRODUCTION_DB_PASSWORD
 		},

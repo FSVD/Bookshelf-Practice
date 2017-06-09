@@ -1,8 +1,7 @@
 "use strict";
 
 var config      = require('./knexfile.js');  
-var env         = 'development';  
-var knex        = require('knex')(config[env]);
+var knex        = require('knex')(config[process.env.NODE_ENV]);
 
 knex.migrate.latest([config]); 
 
