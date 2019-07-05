@@ -1,26 +1,21 @@
 # Bookshelf-Practice
 
-A multi-process NodeJS API wich use Bookshelf ORM based on Knex query builder for relational DDBB.
+A multi-process NodeJS API wich use Bookshelf ORM based on Knex query builder for relational DDBB such as MySQL and MariaDB.
 <br><br>
 
 ### Development stack:
-Node
-Express
-Bookshelf ORM
-MySQL
-
-### Bookshelf usage:
-
-1) Create a new schema in your DDBB (name: bookshelf-practice).
-2) Configure knexfile.js with your DDBB data.
+Node<br>
+Express<br>
+Bookshelf ORM<br>
+MySQL<br>
 
 ### Steps:
 
-1) Install Knex via npm in global mode in order to access to Knex cli. (npm install -g knex).<br>
-2) Change package.json to install dependency for your DB (MySQL in this case).<br>
-3) Install project dependencies (npm install).
-4) Create a .env file in the project root folder. 
-4) Run project "npm start".
+1) Create a new schema in your DDBB (name: bookshelf-practice).
+2) Install Knex dependency in global mode via npm in order to access to Knex cli. (npm install -g knex).<br>
+3) Create a .env file in the project root folder with variables listed in the next section and change values with your db user and pwd.
+4) Install project dependencies (npm install).
+5) Run project "npm start".
 
 ### .env file variables
 
