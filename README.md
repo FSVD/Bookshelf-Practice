@@ -24,14 +24,14 @@ MySQL
 
 ### .env file variables
 
-NODE_ENV=development
-DEVELOPMENT_DB_NAME=bookshelf-practice
-DEVELOPMENT_DB_USER={your database user}
-DEVELOPMENT_DB_PASSWORD={your database password}
-STAGING_DB_NAME=bookshelf-practice
-STAGING_DB_USER={your database user}
-STAGING_DB_PASSWORD={your database password}
-PRODUCTION_DB_NAME=bookshelf-practice
-PRODUCTION_DB_USER={your database user}
-PRODUCTION_DB_PASSWORD={your database password}
-PORT=4200
+NODE_ENV=development<br>
+DEVELOPMENT_DB_NAME=bookshelf-practice<br>
+DEVELOPMENT_DB_USER={ your database user }<br>
+DEVELOPMENT_DB_PASSWORD={ your database password }<br>
+STAGING_DB_NAME=bookshelf-practice<br>
+STAGING_DB_USER={ your database user }<br>
+STAGING_DB_PASSWORD={ your database password }<br>
+PRODUCTION_DB_NAME=bookshelf-practice<br>
+PRODUCTION_DB_USER={ your database user }<br>
+PRODUCTION_DB_PASSWORD={ your database password }<br>
+PORT=4200<br>
