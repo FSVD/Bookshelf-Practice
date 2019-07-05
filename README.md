@@ -1,6 +1,6 @@
 # Bookshelf-Practice
 
-A NodeJS API wich use Bookshelf ORM based on Knex query builder for relational DDBB.
+A multi-process NodeJS API wich use Bookshelf ORM based on Knex query builder for relational DDBB.
 <br><br>
 
 ### Development stack:
