@@ -17,17 +17,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// view engine setup
-/*app.set('views', path.join(__dirname, 'lib/_commons/views'));
-app.set('view engine', 'jade');*/
-
 app.set('views', path.join(__dirname, 'lib/_commons/views'));
 app.set('view engine', 'hbs');
 
-// run db when application start
-var db = require('./config/db');
-
-// import application's modules
+// import application modules
 var appModules = require('./app.modules');
 app.use(appModules);
 
@@ -35,7 +28,7 @@ app.use(appModules);
 app.use(function (req, res, next) {
 	var err = new Error('Not Found');
 	err.status = 404;
-	next(err);
+	//next(err);
 });
 
 // error handler

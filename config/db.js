@@ -1,10 +1,7 @@
 "use strict";
 
-var config      = require('./knexfile.js');  
+var config      = require('./knexfile.js');
 var knex        = require('knex')(config[process.env.NODE_ENV]);
-
-knex.migrate.latest([config]); 
-
 var bookshelf = require('bookshelf')(knex);
 var cascadeDelete = require('bookshelf-cascade-delete');
 
