@@ -1,11 +1,18 @@
 {
 	"name": "library-api",
-	"version": "0.0.0",
+	"version": "1.0.0",
+	"description": "Multiprocess MVC RESTful API for library management",
+	"main": "cluster.js",
 	"private": true,
 	"scripts": {
 		"start": "nodemon ./cluster.js"
 	},
 	"author": "Fabio Schettino",
+	"license": "ISC",
+	"repository": {
+		"type" : "git",
+		"url" : "https://github.com/FSVD/Library-API.git"
+	},
 	"dependencies": {
 		"body-parser": "^1.19.0",
 		"bookshelf": "^0.10.3",

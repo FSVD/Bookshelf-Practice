@@ -1,0 +1,10 @@
+INSERT INTO `library`.`authors` (`id`, `first_name`, `last_name`, `nickname`) VALUES ('1', 'Fabio', 'Schettino', 'FS');
+INSERT INTO `library`.`authors` (`id`, `first_name`, `last_name`, `nickname`) VALUES ('2', 'Erik', 'Soul', 'ES');
+INSERT INTO `library`.`books` (`id`, `author_id`, `title`, `year`, `isbn`) VALUES ('1', '1', 'Design for the Mind: Seven Psychological Principles of Persuasive Design', '2016', '2958');
+INSERT INTO `library`.`books` (`id`, `author_id`, `title`, `year`, `isbn`) VALUES ('2', '2', 'Usability Matters', '2018', '3931');
+INSERT INTO `library`.`books` (`id`, `author_id`, `title`, `year`, `isbn`) VALUES ('3', '1', 'Node.js in Motion', '2019', '4321');
+INSERT INTO `library`.`books` (`id`, `author_id`, `title`, `year`, `isbn`) VALUES ('4', '2', 'React JS development', '2019', '1234');
+INSERT INTO `library`.`genres` (`id`, `name`) VALUES ('1', 'Web design & UX');
+INSERT INTO `library`.`genres` (`id`, `name`) VALUES ('2', 'Web development');
+INSERT INTO `library`.`books_genres` (`id`, `book_id`, `genre_id`) VALUES ('1', '1', '1');
+INSERT INTO `library`.`books_genres` (`id`, `book_id`, `genre_id`) VALUES ('2', '2', '1');
